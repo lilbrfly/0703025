@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>коля кот</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #d3f1f9d5;
+            font-family: 'Courier New', Courier, monospace;
+        }
+       .ticket {
+		background: url('img/img.jpg');
+    background-size: cover;
+    width: 200px;
+    height: 400px;
+    position: relative;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(131, 128, 128, 0.566);
+}
+
+.ticket::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px dashed whitesmoke; /* Создаёт пунктирную границу */
+    pointer-events: none; /* Чтобы не мешало нажатию */
+}
+        .header {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+						color:whitesmoke;
+        }
+        .line {
+            border-top: 1px dotted whitesmoke;
+            margin: 10px 0;
+        }
+        .prediction-area {
+            background-color: #d3f1f9eb;;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 18px;
+						text-transform:calc();
+            color: whitesmoke;
+						
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .value-por {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
+						color: whitesmoke;
+						
+        }
+        .prediction {
+            position: absolute;
+            opacity: 0; /* Сначала скрыто */
+            transition: opacity 0.5s ease;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            color: #f1ecec; 
+				}
+				
+					
+					
+        
+						
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <div class="header">Лотерейный билет со счастливым предсказанием</div>
+        <div class="line"></div>
+        <div class="prediction-area" id="predictionArea">
+            <span id="predictionText">Сотрите здесь</span>
+            <div id="newPrediction" class="prediction"></div> <!-- Предсказание будет здесь -->
+        </div>
+        <div class="line"></div>
+        <div class="value-por">111111</div>
+        
+    </div>
+		<script>
+			const predictions = [
+					"Ваши мечты важны — продолжайте верить, и они сбудутся!",
+					"Кто-то очень дорожит вами, даже если не говорит об этом вслух.",
+					"Ты - больше, чем можешь знать.",
+					"Вас ждёт приятный сюрприз! Cовсем скоро!",
+					"Вселенная советует побаловать себя вкусняшками и отдохнуть.",
+					"Вы — чья-то радость и вдохновение.",
+					"Ваш путь ведёт к счастью, даже если сейчас он кажется трудным.",
+					"Вселенная советует сказать Лизе что вы её сильно любите :).",
+					"Однажды вы обнимете орангутанга!",
+					"Скоро желанное воплотиться в реальность.",
+					"Теплые моря Италии уже ждут вас.",
+					"Главное - делать то, что любите.",
+					"Красота - это ты.",
+					"Все только начинается!",
+					"Ищите радость в мелочах.",
+					"Купите себе тортик или подарок!",
+					"Все, что ты делаешь, не напрасно."
+
+			]; 
+
+			document.getElementById('predictionArea').onclick = function() {
+					const randomIndex = Math.floor(Math.random() * predictions.length);
+					const predictionText = predictions[randomIndex];
+					const currentPredictionDiv = document.getElementById('predictionText');
+					const newPredictionDiv = document.getElementById('newPrediction');
+					const predictionArea = document.getElementById('predictionArea');
+
+					// Плавное исчезновение фона и текста
+					currentPredictionDiv.style.opacity = 0;
+					predictionArea.style.backgroundColor = 'transparent';
+
+					setTimeout(() => {
+							currentPredictionDiv.style.display = 'none'; // Полностью скрыть текст
+							
+							newPredictionDiv.textContent = predictionText;
+							newPredictionDiv.style.display = 'block';
+							newPredictionDiv.style.opacity = 1;
+					}, 500);
+			};
+	</script>
+</body>
+</html>
